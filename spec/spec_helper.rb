@@ -1,4 +1,4 @@
-require 'frontend/helpers'
+require 'mas/frontend/helpers'
 
 RSpec.configure do |config|
   config.order = "random"

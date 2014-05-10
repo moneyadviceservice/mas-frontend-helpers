@@ -1,16 +1,16 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'frontend/helpers/version'
+require 'mas/frontend/helpers/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'frontend-helpers'
-  spec.version       = Frontend::Helpers::Version::STRING
+  spec.name          = 'mas-frontend-helpers'
+  spec.version       = MAS::Frontend::Helpers::Version::STRING
   spec.authors       = ['Money Advice Service', 'Gareth Visagie']
   spec.email         = ['development.team@moneyadviceservice.org.uk', 'gareth@gjvis.com']
   spec.summary       = %q{Useful utilities for creating Ruby web UIs}
   spec.description   = %q{Useful utilities for creating Ruby web UIs, use in conjunction with https://github.com/moneyadviceservice/frontend-assets}
-  spec.homepage      = 'https://github.com/moneyadviceservice/frontend-helpers'
+  spec.homepage      = 'https://github.com/moneyadviceservice/mas-frontend-helpers'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0")
