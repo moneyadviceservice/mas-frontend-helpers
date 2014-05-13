@@ -13,7 +13,7 @@ module MAS
             private
 
             def errors
-              object.errors.map do |field,message|
+              @errors ||= object.errors.map do |field,message|
                 [object, field, message]
               end
             end
