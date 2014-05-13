@@ -17,6 +17,8 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(spec)/})
   spec.require_paths = ['lib']
 
+  spec.add_dependency 'actionpack'
+
   spec.add_development_dependency 'activemodel', '>= 3.2.1'
   spec.add_development_dependency 'bundler', '~> 1.0'
   spec.add_development_dependency 'mas-build', '~> 2.0'
