@@ -14,12 +14,28 @@ module MAS
               errors.select{|s_object, s_field, _| s_object == object && s_field == field}
             end
 
+            def validates(*models)
+              @error_models = models
+            end
+
             private
 
+            def error_models
+              @error_models ||= [object]
+            end
+
             def errors
-              @errors ||= object.errors.map do |field,message|
-                [object, field, message]
+              return @errors if @errors
+
+              @errors = []
+
+              error_models.each do |model|
+                model.errors.each do |field,message|
+                  @errors << [model, field, message]
+                end
               end
+
+              @errors
             end
           end
         end
