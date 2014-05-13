@@ -11,7 +11,7 @@ module MAS
             end
 
             def errors_for(object, field)
-              errors.select{|s_object, s_field, _| s_object == object && s_field == field}
+              errors.select{|hash| hash[:object] == object && hash[:field] == field}
             end
 
             def validates(*models)
@@ -28,10 +28,14 @@ module MAS
               return @errors if @errors
 
               @errors = []
+              counter = 1
+
+              # TODO each with index
 
               error_models.each do |model|
                 model.errors.each do |field,message|
-                  @errors << [model, field, message]
+                  @errors << {number: counter, object: model, field: field, message: message}
+                  counter += 1
                 end
               end
 

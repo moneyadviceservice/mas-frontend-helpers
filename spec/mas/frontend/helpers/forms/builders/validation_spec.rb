@@ -25,9 +25,9 @@ module MAS
               it 'lists all errors for the object' do
                 expect(subject.validation_summary).to eql(
                   [
-                    [model, :field_one, "field_one error A"],
-                    [model, :field_one, "field_one error B"],
-                    [model, :field_two, "field_two error A"]
+                    {number: 1, object: model, field: :field_one, message: "field_one error A"},
+                    {number: 2, object: model, field: :field_one, message: "field_one error B"},
+                    {number: 3, object: model, field: :field_two, message: "field_two error A"}
                   ]
                 )
               end
@@ -37,14 +37,14 @@ module MAS
               it 'lists all errors for the field' do
                 expect(subject.errors_for model, :field_one).to eql(
                   [
-                    [model, :field_one, "field_one error A"],
-                    [model, :field_one, "field_one error B"]
+                    {number: 1, object: model, field: :field_one, message: "field_one error A"},
+                    {number: 2, object: model, field: :field_one, message: "field_one error B"}
                   ]
                 )
 
                 expect(subject.errors_for model, :field_two).to eql(
                   [
-                    [model, :field_two, "field_two error A"]
+                    {number: 3, object: model, field: :field_two, message: "field_two error A"},
                   ]
                 )
               end
@@ -67,12 +67,13 @@ module MAS
                 it 'lists all errors for the objects' do
                   expect(subject.validation_summary).to eql(
                     [
-                      [model, :field_one, "field_one error A"],
-                      [model, :field_one, "field_one error B"],
-                      [model, :field_two, "field_two error A"],
-                      [another_model, :field_a, "field_a error 1"],
-                      [another_model, :field_a, "field_a error 2"],
-                      [another_model, :field_b, "field_b error 1"]
+                      {number: 1, object: model, field: :field_one, message: "field_one error A"},
+                      {number: 2, object: model, field: :field_one, message: "field_one error B"},
+                      {number: 3, object: model, field: :field_two, message: "field_two error A"},
+
+                      {number: 4, object: another_model, field: :field_a, message: "field_a error 1"},
+                      {number: 5, object: another_model, field: :field_a, message: "field_a error 2"},
+                      {number: 6, object: another_model, field: :field_b, message: "field_b error 1"}
                     ]
                   )
                 end
