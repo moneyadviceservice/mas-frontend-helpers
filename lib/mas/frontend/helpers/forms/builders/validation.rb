@@ -6,12 +6,25 @@ module MAS
       module Forms
         module Builders
           class Validation < ::ActionView::Helpers::FormBuilder
+            include ActionView::Helpers::TagHelper
+            include ActionView::Context
+
+            # TODO partials
             def validation_summary
-              errors
+              content_tag(:ol) do
+                errors.map do |error|
+                  content_tag(:li, "#{error[:number]}. #{error[:field]} #{error[:message]}")
+                end.join.html_safe
+              end
             end
 
+            # TODO partials
             def errors_for(object, field)
-              errors.select{|hash| hash[:object] == object && hash[:field] == field}
+              content_tag(:ol) do
+                errors.select{|hash| hash[:object] == object && hash[:field] == field}.map do |error|
+                  content_tag(:li, "#{error[:number]}. #{error[:field]} #{error[:message]}")
+                end.join.html_safe
+              end
             end
 
             def validates(*models)

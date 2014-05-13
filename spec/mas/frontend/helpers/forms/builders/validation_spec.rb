@@ -23,30 +23,15 @@ module MAS
 
             describe :validation_summary do
               it 'lists all errors for the object' do
-                expect(subject.validation_summary).to eql(
-                  [
-                    {number: 1, object: model, field: :field_one, message: "field_one error A"},
-                    {number: 2, object: model, field: :field_one, message: "field_one error B"},
-                    {number: 3, object: model, field: :field_two, message: "field_two error A"}
-                  ]
-                )
+                expect(subject.validation_summary).to eql("<ol><li>1. field_one field_one error A</li><li>2. field_one field_one error B</li><li>3. field_two field_two error A</li></ol>")
               end
             end
 
             describe :errors_for do
               it 'lists all errors for the field' do
-                expect(subject.errors_for model, :field_one).to eql(
-                  [
-                    {number: 1, object: model, field: :field_one, message: "field_one error A"},
-                    {number: 2, object: model, field: :field_one, message: "field_one error B"}
-                  ]
-                )
+                expect(subject.errors_for model, :field_one).to eql("<ol><li>1. field_one field_one error A</li><li>2. field_one field_one error B</li></ol>")
 
-                expect(subject.errors_for model, :field_two).to eql(
-                  [
-                    {number: 3, object: model, field: :field_two, message: "field_two error A"},
-                  ]
-                )
+                expect(subject.errors_for model, :field_two).to eql("<ol><li>3. field_two field_two error A</li></ol>")
               end
             end
 
@@ -65,17 +50,7 @@ module MAS
                 end
 
                 it 'lists all errors for the objects' do
-                  expect(subject.validation_summary).to eql(
-                    [
-                      {number: 1, object: model, field: :field_one, message: "field_one error A"},
-                      {number: 2, object: model, field: :field_one, message: "field_one error B"},
-                      {number: 3, object: model, field: :field_two, message: "field_two error A"},
-
-                      {number: 4, object: another_model, field: :field_a, message: "field_a error 1"},
-                      {number: 5, object: another_model, field: :field_a, message: "field_a error 2"},
-                      {number: 6, object: another_model, field: :field_b, message: "field_b error 1"}
-                    ]
-                  )
+                  expect(subject.validation_summary).to eql("<ol><li>1. field_one field_one error A</li><li>2. field_one field_one error B</li><li>3. field_two field_two error A</li><li>4. field_a field_a error 1</li><li>5. field_a field_a error 2</li><li>6. field_b field_b error 1</li></ol>")
                 end
               end
             end
