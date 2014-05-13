@@ -10,6 +10,10 @@ module MAS
               errors
             end
 
+            def errors_for(object, field)
+              errors.select{|s_object, s_field, _| s_object == object && s_field == field}
+            end
+
             private
 
             def errors
