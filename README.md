@@ -6,15 +6,21 @@ Useful Ruby utilities for creating web UIs. Use in conjunction with [frontend-as
 
 Add this line to your application's Gemfile:
 
-    gem 'mas-frontend-helpers'
+```rb
+gem 'mas-frontend-helpers'
+```
 
 And then execute:
 
-    $ bundle
+```sh
+$ bundle
+```
 
 Or install it yourself as:
 
-    $ gem install mas-frontend-helpers
+```sh
+$ gem install mas-frontend-helpers
+```
 
 ## Usage
 
