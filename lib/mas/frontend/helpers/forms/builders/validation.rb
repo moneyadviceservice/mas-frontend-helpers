@@ -5,7 +5,7 @@ module MAS
     module Helpers
       module Forms
         module Builders
-          class Validation < ::ActionView::Helpers::FormBuilder
+          module ValidationModule
             include ActionView::Helpers::TagHelper
             include ActionView::Context
 
@@ -52,6 +52,10 @@ module MAS
 
               @errors
             end
+          end
+
+          class Validation < ::ActionView::Helpers::FormBuilder
+            include ValidationModule
           end
         end
       end
