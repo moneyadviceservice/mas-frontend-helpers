@@ -10,23 +10,19 @@ module MAS
             include ActionView::Context
 
             # TODO partials
-            # TODO i18n
             def validation_summary
               content_tag(:ol) do
                 errors.map do |error|
-                  field = (error[:field] == :base ? "" : "#{error[:field]} ".humanize)
-                  content_tag(:li, "#{error[:number]}. #{field}#{error[:message]}")
+                  content_tag(:li, "#{error[:number]}. #{error[:message]}")
                 end.join.html_safe
               end
             end
 
             # TODO partials
-            # TODO i18n
             def errors_for(object, field)
               content_tag(:ol) do
                 errors.select{|hash| hash[:object] == object && hash[:field] == field}.map do |error|
-                  field = (error[:field] == :base ? "" : "#{error[:field]} ".humanize)
-                  content_tag(:li, "#{error[:number]}. #{field}#{error[:message]}")
+                  content_tag(:li, "#{error[:number]}. #{error[:message]}")
                 end.join.html_safe
               end
             end
@@ -51,7 +47,7 @@ module MAS
 
               error_models.each do |model|
                 model.errors.each do |field,message|
-                  @errors << {number: counter, object: model, field: field, message: message}
+                  @errors << {number: counter, object: model, field: field, message: model.errors.full_message(field, message)}
                   counter += 1
                 end
               end
