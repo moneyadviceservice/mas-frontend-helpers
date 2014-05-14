@@ -50,7 +50,7 @@ module MAS
                 end
 
                 it 'lists all errors for the objects' do
-                  expect(subject.validation_summary).to eql("<ol><li>1. Field one field_one error A</li><li>2. Field one field_one error B</li><li>3. Field two field_two error A</li><li>4. field_a field_a error 1</li><li>5. field_a field_a error 2</li><li>6. field_b field_b error 1</li></ol>")
+                  expect(subject.validation_summary).to eql("<ol><li>1. Field one field_one error A</li><li>2. Field one field_one error B</li><li>3. Field two field_two error A</li><li>4. Field a field_a error 1</li><li>5. Field a field_a error 2</li><li>6. Field b field_b error 1</li></ol>")
                 end
               end
             end
