@@ -13,6 +13,7 @@ module MAS
 
             let(:model) do
               model = ValidationBuilderModel.new
+              model.errors[:base] << "base error A"
               model.errors[:field_one] << "field_one error A"
               model.errors[:field_one] << "field_one error B"
               model.errors[:field_two] << "field_two error A"
@@ -23,15 +24,15 @@ module MAS
 
             describe :validation_summary do
               it 'lists all errors for the object' do
-                expect(subject.validation_summary).to eql("<ol><li>1. Field one field_one error A</li><li>2. Field one field_one error B</li><li>3. Field two field_two error A</li></ol>")
+                expect(subject.validation_summary).to eql("<ol><li>1. base error A</li><li>2. <a href=\"#field_one-errors\">Field one field_one error A</a></li><li>3. <a href=\"#field_one-errors\">Field one field_one error B</a></li><li>4. <a href=\"#field_two-errors\">Field two field_two error A</a></li></ol>")
               end
             end
 
             describe :errors_for do
               it 'lists all errors for the field' do
-                expect(subject.errors_for model, :field_one).to eql("<ol><li>1. Field one field_one error A</li><li>2. Field one field_one error B</li></ol>")
+                expect(subject.errors_for model, :field_one).to eql("<ol id=\"field_one-errors\"><li>2. Field one field_one error A</li><li>3. Field one field_one error B</li></ol>")
 
-                expect(subject.errors_for model, :field_two).to eql("<ol><li>3. Field two field_two error A</li></ol>")
+                expect(subject.errors_for model, :field_two).to eql("<ol id=\"field_two-errors\"><li>4. Field two field_two error A</li></ol>")
               end
             end
 
@@ -50,7 +51,7 @@ module MAS
                 end
 
                 it 'lists all errors for the objects' do
-                  expect(subject.validation_summary).to eql("<ol><li>1. Field one field_one error A</li><li>2. Field one field_one error B</li><li>3. Field two field_two error A</li><li>4. Field a field_a error 1</li><li>5. Field a field_a error 2</li><li>6. Field b field_b error 1</li></ol>")
+                  expect(subject.validation_summary).to eql("<ol><li>1. base error A</li><li>2. <a href=\"#field_one-errors\">Field one field_one error A</a></li><li>3. <a href=\"#field_one-errors\">Field one field_one error B</a></li><li>4. <a href=\"#field_two-errors\">Field two field_two error A</a></li><li>5. <a href=\"#field_a-errors\">Field a field_a error 1</a></li><li>6. <a href=\"#field_a-errors\">Field a field_a error 2</a></li><li>7. <a href=\"#field_b-errors\">Field b field_b error 1</a></li></ol>")
                 end
               end
             end

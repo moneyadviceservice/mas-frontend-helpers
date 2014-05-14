@@ -8,19 +8,20 @@ module MAS
           module ValidationModule
             include ActionView::Helpers::TagHelper
             include ActionView::Context
+            include ActionView::Helpers::UrlHelper
 
             # TODO partials
             def validation_summary
               content_tag(:ol) do
                 errors.map do |error|
-                  content_tag(:li, "#{error[:number]}. #{error[:message]}")
+                  summary_li_for_error(error)
                 end.join.html_safe
               end
             end
 
             # TODO partials
             def errors_for(object, field)
-              content_tag(:ol) do
+              content_tag(:ol, id: "#{field}-errors") do
                 errors.select{|hash| hash[:object] == object && hash[:field] == field}.map do |error|
                   content_tag(:li, "#{error[:number]}. #{error[:message]}")
                 end.join.html_safe
@@ -51,6 +52,14 @@ module MAS
               end
 
               @errors
+            end
+
+            def summary_li_for_error(error)
+              if error[:field] == :base
+                content_tag(:li, "#{error[:number]}. #{error[:message]}".html_safe)
+              else
+                content_tag(:li, "#{error[:number]}. #{link_to error[:message], "##{error[:field]}-errors"}".html_safe)
+              end
             end
           end
 
