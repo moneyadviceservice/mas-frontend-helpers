@@ -30,7 +30,7 @@ module MAS
 
             describe :validation_summary do
               it 'lists all errors for the object' do
-                expect(subject.validation_summary).to eql("<ol><li>1. base error A</li><li>2. <a href=\"#field_one-errors\">Field one field_one error A</a></li><li>3. <a href=\"#field_one-errors\">Field one field_one error B</a></li><li>4. <a href=\"#field_two-errors\">Field two field_two error A</a></li></ol>")
+                expect(subject.validation_summary).to eql("<div class=\"validation-summary\"><ol class=\"validation-summary__list\"><li>1. base error A</li><li>2. <a href=\"#field_one-errors\">Field one field_one error A</a></li><li>3. <a href=\"#field_one-errors\">Field one field_one error B</a></li><li>4. <a href=\"#field_two-errors\">Field two field_two error A</a></li></ol></div>")
               end
             end
 
@@ -57,7 +57,7 @@ module MAS
                 end
 
                 it 'lists all errors for the objects' do
-                  expect(subject.validation_summary).to eql("<ol><li>1. base error A</li><li>2. <a href=\"#field_one-errors\">Field one field_one error A</a></li><li>3. <a href=\"#field_one-errors\">Field one field_one error B</a></li><li>4. <a href=\"#field_two-errors\">Field two field_two error A</a></li><li>5. <a href=\"#field_a-errors\">Field a field_a error 1</a></li><li>6. <a href=\"#field_a-errors\">Field a field_a error 2</a></li><li>7. <a href=\"#field_b-errors\">Field b field_b error 1</a></li></ol>")
+                  expect(subject.validation_summary).to eql("<div class=\"validation-summary\"><ol class=\"validation-summary__list\"><li>1. base error A</li><li>2. <a href=\"#field_one-errors\">Field one field_one error A</a></li><li>3. <a href=\"#field_one-errors\">Field one field_one error B</a></li><li>4. <a href=\"#field_two-errors\">Field two field_two error A</a></li><li>5. <a href=\"#field_a-errors\">Field a field_a error 1</a></li><li>6. <a href=\"#field_a-errors\">Field a field_a error 2</a></li><li>7. <a href=\"#field_b-errors\">Field b field_b error 1</a></li></ol></div>")
                 end
               end
             end

@@ -12,10 +12,12 @@ module MAS
 
             # TODO partials
             def validation_summary
-              content_tag(:ol) do
-                errors.map do |error|
-                  summary_li_for_error(error)
-                end.join.html_safe
+              content_tag(:div, class: "validation-summary") do
+                content_tag(:ol, class: "validation-summary__list") do
+                  errors.map do |error|
+                    summary_li_for_error(error)
+                  end.join.html_safe
+                end
               end
             end
 
