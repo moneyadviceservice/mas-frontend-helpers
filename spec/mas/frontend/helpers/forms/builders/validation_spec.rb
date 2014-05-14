@@ -23,15 +23,15 @@ module MAS
 
             describe :validation_summary do
               it 'lists all errors for the object' do
-                expect(subject.validation_summary).to eql("<ol><li>1. field_one field_one error A</li><li>2. field_one field_one error B</li><li>3. field_two field_two error A</li></ol>")
+                expect(subject.validation_summary).to eql("<ol><li>1. Field one field_one error A</li><li>2. Field one field_one error B</li><li>3. Field two field_two error A</li></ol>")
               end
             end
 
             describe :errors_for do
               it 'lists all errors for the field' do
-                expect(subject.errors_for model, :field_one).to eql("<ol><li>1. field_one field_one error A</li><li>2. field_one field_one error B</li></ol>")
+                expect(subject.errors_for model, :field_one).to eql("<ol><li>1. Field one field_one error A</li><li>2. Field one field_one error B</li></ol>")
 
-                expect(subject.errors_for model, :field_two).to eql("<ol><li>3. field_two field_two error A</li></ol>")
+                expect(subject.errors_for model, :field_two).to eql("<ol><li>3. Field two field_two error A</li></ol>")
               end
             end
 
@@ -50,7 +50,7 @@ module MAS
                 end
 
                 it 'lists all errors for the objects' do
-                  expect(subject.validation_summary).to eql("<ol><li>1. field_one field_one error A</li><li>2. field_one field_one error B</li><li>3. field_two field_two error A</li><li>4. field_a field_a error 1</li><li>5. field_a field_a error 2</li><li>6. field_b field_b error 1</li></ol>")
+                  expect(subject.validation_summary).to eql("<ol><li>1. Field one field_one error A</li><li>2. Field one field_one error B</li><li>3. Field two field_two error A</li><li>4. field_a field_a error 1</li><li>5. field_a field_a error 2</li><li>6. field_b field_b error 1</li></ol>")
                 end
               end
             end

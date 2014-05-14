@@ -10,19 +10,23 @@ module MAS
             include ActionView::Context
 
             # TODO partials
+            # TODO i18n
             def validation_summary
               content_tag(:ol) do
                 errors.map do |error|
-                  content_tag(:li, "#{error[:number]}. #{error[:field]} #{error[:message]}")
+                  field = (error[:field] == :base ? "" : "#{error[:field]} ".humanize)
+                  content_tag(:li, "#{error[:number]}. #{field}#{error[:message]}")
                 end.join.html_safe
               end
             end
 
             # TODO partials
+            # TODO i18n
             def errors_for(object, field)
               content_tag(:ol) do
                 errors.select{|hash| hash[:object] == object && hash[:field] == field}.map do |error|
-                  content_tag(:li, "#{error[:number]}. #{error[:field]} #{error[:message]}")
+                  field = (error[:field] == :base ? "" : "#{error[:field]} ".humanize)
+                  content_tag(:li, "#{error[:number]}. #{field}#{error[:message]}")
                 end.join.html_safe
               end
             end
