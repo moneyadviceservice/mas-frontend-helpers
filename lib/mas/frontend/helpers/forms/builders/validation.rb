@@ -43,8 +43,6 @@ module MAS
               @errors = []
               counter = 1
 
-              # TODO each with index
-
               error_models.each do |model|
                 model.errors.each do |field,message|
                   @errors << {number: counter, object: model, field: field, message: model.errors.full_message(field, message)}
