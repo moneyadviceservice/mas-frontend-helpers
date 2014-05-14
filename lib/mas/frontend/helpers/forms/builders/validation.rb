@@ -32,6 +32,10 @@ module MAS
               @error_models = models
             end
 
+            def error_count
+              errors.count
+            end
+
             private
 
             def error_models

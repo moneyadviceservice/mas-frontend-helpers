@@ -22,6 +22,12 @@ module MAS
 
             subject{ described_class.new :model, model, nil, {} }
 
+            describe :error_count do
+              it 'returns number of errors' do
+                expect(subject.error_count).to eql(4)
+              end
+            end
+
             describe :validation_summary do
               it 'lists all errors for the object' do
                 expect(subject.validation_summary).to eql("<ol><li>1. base error A</li><li>2. <a href=\"#field_one-errors\">Field one field_one error A</a></li><li>3. <a href=\"#field_one-errors\">Field one field_one error B</a></li><li>4. <a href=\"#field_two-errors\">Field two field_two error A</a></li></ol>")
