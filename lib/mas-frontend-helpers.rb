@@ -1,0 +1,2 @@
+module MasFrontendHelpers
+end
