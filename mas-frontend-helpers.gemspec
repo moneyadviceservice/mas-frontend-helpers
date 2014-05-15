@@ -21,6 +21,7 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency 'activemodel', '>= 3.2.1'
   spec.add_development_dependency 'bundler', '~> 1.0'
+  spec.add_development_dependency 'mas-build', '~> 2.0'
   spec.add_development_dependency 'rake'
   spec.add_development_dependency 'rspec', '~> 2.0'
 end
