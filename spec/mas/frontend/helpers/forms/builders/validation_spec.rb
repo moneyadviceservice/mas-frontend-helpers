@@ -20,7 +20,7 @@ module MAS
               model
             end
 
-            subject{ described_class.new :model, model, nil, {} }
+            subject{ described_class.new(:model, model, nil, {}, {}) }
 
             describe :error_count do
               it 'returns number of errors' do
